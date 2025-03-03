@@ -37,7 +37,7 @@ public class NumberOrdering extends AppCompatActivity {
         question = findViewById(R.id.question);
 
         sharedPreferences = getSharedPreferences("GamePrefs", MODE_PRIVATE);
-        streaks = sharedPreferences.getInt("Current_Streaks", 0);
+        streaks = sharedPreferences.getInt("Current_Streaks_Ordering", 0);
 
         // Initialize number TextViews
         num1View = findViewById(R.id.num1);
@@ -228,7 +228,7 @@ public class NumberOrdering extends AppCompatActivity {
             showDialog("Incorrect Order!", "Try again!");
         }
 
-        editor.putInt("Current_Streaks", streaks);
+        editor.putInt("Current_Streaks_Ordering", streaks);
         editor.apply();
         updateStreakDisplay();
     }

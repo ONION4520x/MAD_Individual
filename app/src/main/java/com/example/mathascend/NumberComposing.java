@@ -34,7 +34,7 @@ public class NumberComposing extends AppCompatActivity {
         setContentView(R.layout.activity_number_composing);
 
         sharedPreferences = getSharedPreferences("GamePrefs", MODE_PRIVATE);
-        streaks = sharedPreferences.getInt("Current_Streaks", 0);
+        streaks = sharedPreferences.getInt("Current_Streaks_Composing", 0);
 
         streakText = findViewById(R.id.streaks_composing);
         box1 = findViewById(R.id.box1);
@@ -161,7 +161,7 @@ public class NumberComposing extends AppCompatActivity {
             streaks = 0;
         }
 
-        editor.putInt("Current_Streaks", streaks);
+        editor.putInt("Current_Streaks_Composing", streaks);
         editor.apply();
         updateStreakDisplay();
     }
@@ -204,6 +204,16 @@ public class NumberComposing extends AppCompatActivity {
         box1.setBackgroundResource(R.drawable.text_display_box);
         box2.setBackgroundResource(R.drawable.text_display_box);
         answerBox.setBackgroundResource(R.drawable.text_display_box);
+    }
+
+    public void ResetField(View v){
+        selectedNum1 = -1;
+        selectedNum2 = -1;
+        box1.setText("");
+        box2.setText("");
+        answerBox.setText("");
+        box1.setBackgroundResource(R.drawable.text_display_box);
+        box2.setBackgroundResource(R.drawable.text_display_box);
     }
 
     public void ReturnToMenu(View v){

@@ -39,7 +39,7 @@ public class NumberComparing extends AppCompatActivity {
         setContentView(R.layout.activity_number_comparing);
 
         sharedPreferences = getSharedPreferences("GamePrefs", MODE_PRIVATE);
-        streaks = sharedPreferences.getInt("Current_Streaks", 0);
+        streaks = sharedPreferences.getInt("Current_Streaks_Comparing", 0);
 
         Pair<Integer, Integer> NumbersGenerated = RandomNumberGenerator();
         num1 = NumbersGenerated.first;
@@ -233,7 +233,7 @@ public class NumberComparing extends AppCompatActivity {
         }
 
         // Update streaks in SharedPreferences
-        editor.putInt("Current_Streaks", streaks);
+        editor.putInt("Current_Streaks_Comparing", streaks);
         editor.apply();
 
         // Update streaks display
