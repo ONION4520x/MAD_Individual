@@ -103,7 +103,7 @@ public class NumberComposing extends AppCompatActivity {
         numbers[2] = numberList.get(2);
         numbers[3] = numberList.get(3);
 
-        question.setText("Make " + targetNumber + " using two numbers");
+        question.setText("Compose the number " + targetNumber + " using two numbers");
         num1.setText(String.valueOf(numbers[0]));
         num2.setText(String.valueOf(numbers[1]));
         num3.setText(String.valueOf(numbers[2]));
@@ -155,7 +155,7 @@ public class NumberComposing extends AppCompatActivity {
 
 
         } else {
-            showDialog("Incorrect Order!", "Try again!");
+            showDialog("Incorrect!", " Don't give up, try again?");
             answerBox.setBackgroundResource(R.drawable.composing_ansbox_incorrect);
             answerBox.setTextColor(Color.WHITE);
             streaks = 0;
@@ -170,7 +170,6 @@ public class NumberComposing extends AppCompatActivity {
         Dialog dialog = new Dialog(this, R.style.Theme_CustomDialog);
         dialog.setContentView(R.layout.number_comparing_dialog_box);
         dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-
         TextView title = dialog.findViewById(R.id.title);
         TextView result = dialog.findViewById(R.id.Result);
         Button btnClose = dialog.findViewById(R.id.btn_Next);

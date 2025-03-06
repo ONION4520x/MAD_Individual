@@ -245,6 +245,7 @@ public class NumberOrdering extends AppCompatActivity {
         title.setText(t);
         result.setText(d);
 
+
         btnClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
