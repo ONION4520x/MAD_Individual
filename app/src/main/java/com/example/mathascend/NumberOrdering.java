@@ -70,18 +70,15 @@ public class NumberOrdering extends AppCompatActivity {
         // Generate and shuffle numbers
         generateNumbers();
 
-        // Enable drag for number views
         for (TextView numView : numberViews) {
             setDragListener(numView);
         }
 
-        // Enable drag & drop for boxes
         for (TextView boxView : boxViews) {
             setDragListener(boxView);
             setDropListener(boxView);
         }
 
-        // Set validation button
         Button validateButton = findViewById(R.id.btn_submit);
         validateButton.setOnClickListener(v -> validateOrder());
 
@@ -93,16 +90,13 @@ public class NumberOrdering extends AppCompatActivity {
         for (int i = 0; i < numberViews.size(); i++) {
             numberViews.get(i).setText("");
             numberViews.get(i).setBackgroundResource(R.drawable.placeholder_bg_1_white);
-
         }
 
         for (int i = 0; i < boxViews.size(); i++){
             boxViews.get(i).setText("");
             boxViews.get(i).setBackgroundResource(R.drawable.text_display_box);
         }
-
         generateNumbers();
-
     }
 
     private void updateQuestionText() {
@@ -127,7 +121,7 @@ public class NumberOrdering extends AppCompatActivity {
         }
     }
 
-    // Set up drag listener for numbers & boxes
+    // Set up drag listener for numbers and boxes
     @SuppressLint("ClickableViewAccessibility")
     private void setDragListener(final TextView textView) {
         textView.setOnTouchListener((view, event) -> {
@@ -141,7 +135,7 @@ public class NumberOrdering extends AppCompatActivity {
         });
     }
 
-    // Set up drop listener for boxes
+    // Drop listener for boxes
     private void setDropListener(final TextView targetBox) {
         targetBox.setOnDragListener((view, dragEvent) -> {
             View draggedView = (View) dragEvent.getLocalState();
@@ -165,7 +159,6 @@ public class NumberOrdering extends AppCompatActivity {
                         String draggedText = draggedTextView.getText().toString();
                         String targetText = targetBox.getText().toString();
 
-                        // Check if dragging from numberViews (num1View, num2View, etc.)
                         boolean isFromNumberView = numberViews.contains(draggedTextView);
 
                         if (!draggedText.equals(targetText)) {
@@ -183,13 +176,13 @@ public class NumberOrdering extends AppCompatActivity {
                             draggedTextView.setBackgroundResource(R.drawable.text_display_box);
                         }
 
-                        // Ensure target box style is updated
+                        //Update UI
                         targetBox.setBackgroundResource(R.drawable.placeholder_bg_1_white);
                     }
                     return true;
 
                 case DragEvent.ACTION_DRAG_ENDED:
-                  draggedView.setVisibility(View.VISIBLE); // Ensure dragged view stays visible
+                  draggedView.setVisibility(View.VISIBLE);
                     return true;
 
                 default:
@@ -199,7 +192,7 @@ public class NumberOrdering extends AppCompatActivity {
     }
 
 
-    // Validate if numbers are sorted correctly
+    // Validate the answer submit
     private void validateOrder() {
         List<Integer> orderedNumbers = new ArrayList<>();
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -244,7 +237,6 @@ public class NumberOrdering extends AppCompatActivity {
 
         title.setText(t);
         result.setText(d);
-
 
         btnClose.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -56,10 +56,8 @@ public class NumberComposing extends AppCompatActivity {
 
     private void generateNumbers() {
         Random random = new Random();
-        targetNumber = random.nextInt(94) + 5; // Target number between 5 and 25
-
+        targetNumber = random.nextInt(94) + 5; // Generate the question number
         HashSet<Integer> uniqueNumbers = new HashSet<>();
-
 
         isAddition = random.nextBoolean();
         arithmetic.setText(isAddition ? "+" : "-");
@@ -77,7 +75,7 @@ public class NumberComposing extends AppCompatActivity {
             do {
                 numA = random.nextInt(15) + 5; // Ensure numA is always larger
                 numB = random.nextInt(numA - 1) + 1; // Ensure numB is smaller
-                targetNumber = numA - numB; // Adjust target number based on subtraction
+                targetNumber = numA - numB;
             } while (numA == numB || uniqueNumbers.contains(numA) || uniqueNumbers.contains(numB));
         }
 
@@ -86,12 +84,11 @@ public class NumberComposing extends AppCompatActivity {
 
         // Generate two more unique random numbers
         while (uniqueNumbers.size() < 4) {
-            int num = random.nextInt(20) + 1; // Generate a number between 1 and 20
+            int num = random.nextInt(20) + 1;
             if (!uniqueNumbers.contains(num)) {
                 uniqueNumbers.add(num);
             }
         }
-
 
         // Convert to list and shuffle
         ArrayList<Integer> numberList = new ArrayList<>(uniqueNumbers);
@@ -103,6 +100,7 @@ public class NumberComposing extends AppCompatActivity {
         numbers[2] = numberList.get(2);
         numbers[3] = numberList.get(3);
 
+        //update UI
         question.setText("Compose the number " + targetNumber + " using two numbers");
         num1.setText(String.valueOf(numbers[0]));
         num2.setText(String.valueOf(numbers[1]));
@@ -152,7 +150,6 @@ public class NumberComposing extends AppCompatActivity {
             showDialog("Correct!", "Well done! Play again?");
             answerBox.setBackgroundResource(R.drawable.composing_ansbox_correct);
             streaks++;
-
 
         } else {
             showDialog("Incorrect!", " Don't give up, try again?");

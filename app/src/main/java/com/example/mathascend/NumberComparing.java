@@ -75,7 +75,7 @@ public class NumberComparing extends AppCompatActivity {
         updateStreakDisplay();
     }
 
-    // Handle touch event for dragging
+    //Touch event for dragging
     private class DragTouchListener implements View.OnTouchListener {
         @Override
         public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -88,7 +88,7 @@ public class NumberComparing extends AppCompatActivity {
                 String draggedText = draggedTextView.getText().toString();
 
                 // Create ClipData with actual text
-                ClipData data = ClipData.newPlainText("draggedText", draggedText);
+                ClipData data = ClipData.newPlainText("DraggedText", draggedText);
                 View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
 
                 view.startDragAndDrop(data, shadowBuilder, view, 0);
@@ -113,14 +113,12 @@ public class NumberComparing extends AppCompatActivity {
 
             switch (event.getAction()) {
                 case DragEvent.ACTION_DRAG_STARTED:
-                    Log.d("DragDrop", "Drag started");
-                    return true;
-
-                case DragEvent.ACTION_DRAG_ENTERED:
-                    Log.d("DragDrop", "Drag entered drop area");
-                    return true;
 
                 case DragEvent.ACTION_DRAG_LOCATION:
+
+                case DragEvent.ACTION_DRAG_EXITED:
+
+                case DragEvent.ACTION_DRAG_ENTERED:
                     return true;
 
                 case DragEvent.ACTION_DROP:
@@ -128,7 +126,6 @@ public class NumberComparing extends AppCompatActivity {
                     if (item != null && item.getText() != null) {
                         String draggedText = item.getText().toString();
 
-                        // Restore previous item if there's already something in the dropArea
                         if (!((TextView) v).getText().toString().isEmpty()) {
                             if (previousView != null) {
                                 previousView.setVisibility(View.VISIBLE); // Restore previous item
@@ -139,10 +136,9 @@ public class NumberComparing extends AppCompatActivity {
                         previousText = ((TextView) v).getText().toString();
                         previousView = draggedView;
 
-                        // Update the dropArea
+                        // Update the box
                         dropArea.setBackgroundResource(R.drawable.placeholder_bg_1_white);
                         ((TextView) v).setText(draggedText);
-
                         draggedView.setVisibility(View.INVISIBLE);
 
                     } else {
@@ -150,13 +146,7 @@ public class NumberComparing extends AppCompatActivity {
                     }
                     return true;
 
-                case DragEvent.ACTION_DRAG_EXITED:
-                    Log.d("DragDrop", "Drag exited drop area");
-                    return true;
-
                 case DragEvent.ACTION_DRAG_ENDED:
-                    Log.d("DragDrop", "Drag ended");
-
                     if (!event.getResult()) {
                         draggedView.setVisibility(View.VISIBLE);
                     }
@@ -170,13 +160,10 @@ public class NumberComparing extends AppCompatActivity {
     }
 
     public Pair<Integer, Integer> RandomNumberGenerator() {
-
         Random random = new Random();
-
+        //Generate 2 number from 0 - 99
         int num1 = random.nextInt(100);
         int num2 = random.nextInt(100);
-
-        Log.d("RandomNumberGenerator", "Generated numbers: num1 = " + num1 + ", num2 = " + num2);
         return new Pair<>(num1, num2);
     }
 

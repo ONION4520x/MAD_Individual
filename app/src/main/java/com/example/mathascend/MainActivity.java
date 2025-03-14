@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         NumberOrdering = findViewById(R.id.myButton2);
         NumberComposing = findViewById(R.id.myButton3);
 
+        //Topic 1
         NumberComparing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //Topic 2
         NumberOrdering.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -41,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //Topic 3
         NumberComposing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
